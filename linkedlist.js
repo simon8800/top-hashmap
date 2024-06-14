@@ -1,41 +1,37 @@
-class Node {
-  constructor(data) {
-    this.data = data;
-    this.next = null;
-  }
-}
-
 class LinkedList {
   constructor() {
     this.head = null;
     this.tail = this.head;
-    this.count = 0;
   }
 
   append(node) {
-    if (this.count === 0) {
+    if (this.size() === 0) {
       this.head = node;
       this.tail = this.head;
     } else {
       this.tail.next = node;
       this.tail = node;
     }
-    this.count++;
   }
 
   prepend(node) {
-    if (this.count === 0) {
+    if (this.size() === 0) {
       this.head = node;
       this.tail = this.head;
     } else {
       node.next = this.head;
       this.head = node;
     }
-    this.count++;
   }
 
   size() {
-    return this.count;
+    let curr = this.head;
+    let count = 0;
+    while (curr) {
+      count++;
+      curr = curr.next;
+    }
+    return count;
   }
 
   getHead() {
@@ -49,7 +45,7 @@ class LinkedList {
   at(index) {
     let curr;
     let currentIdx = 0;
-    if (this.count === 0) {
+    if (this.size() === 0) {
       return null;
     } else {
       curr = this.head;
@@ -66,13 +62,13 @@ class LinkedList {
 
   pop() {
     let popped;
-    if (this.count === 0) {
+    if (this.size() === 0) {
       return;
-    } else if (this.count === 1) {
+    } else if (this.size() === 1) {
       popped = this.tail;
       this.tail = null;
       this.head = null;
-      this.count--;
+      t;
     } else {
       popped = this.tail;
       let curr = this.head;
@@ -90,7 +86,7 @@ class LinkedList {
 
   contains(value) {
     let curr;
-    if (this.count === 0) {
+    if (this.size() === 0) {
       return false;
     } else {
       curr = this.head;
@@ -108,7 +104,7 @@ class LinkedList {
   find(value) {
     let curr;
     let index = 0;
-    if (this.count === 0) {
+    if (this.size() === 0) {
       return null;
     } else {
       curr = this.head;
@@ -136,4 +132,4 @@ class LinkedList {
   }
 }
 
-module.exports = { Node, LinkedList };
+module.exports = LinkedList;
